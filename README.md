@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Frontend Mentor Solution](https://www.frontendmentor.io/solutions/product-list-with-cart-ztWU9IogKx)
+- Live Site URL: [Product List with Cart](https://product-list-with-cart-mavix.netlify.app/)
 
 ## My process
 
