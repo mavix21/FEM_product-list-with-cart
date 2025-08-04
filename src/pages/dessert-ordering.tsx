@@ -55,7 +55,7 @@ export default function DessertOrdering() {
   };
 
   return (
-    <div className="bg-card min-h-screen p-4 lg:p-8">
+    <div className="bg-card min-h-screen p-4 lg:px-8 lg:pt-16">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Desserts Grid */}
