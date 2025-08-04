@@ -1,69 +1,128 @@
-# React + TypeScript + Vite
+# Frontend Mentor - Product list with cart solution
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution to the [Product list with cart challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-Currently, two official plugins are available:
+## Table of contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-## Expanding the ESLint configuration
+## Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### The challenge
 
-```js
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+Users should be able to:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Add items to the cart and remove them
+- Increase/decrease the number of items in the cart
+- See an order confirmation modal when they click "Confirm Order"
+- Reset their selections when they click "Start New Order"
+- View the optimal layout for the interface depending on their device's screen size
+- See hover and focus states for all interactive elements on the page
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+### Screenshot
+
+![Desktop Screenshot](./screenshots/screenshot-desktop.png)
+![Mobile Screenshot](./screenshots/screenshot-mobile.png)
+
+### Links
+
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+
+## My process
+
+### Built with
+
+- [React](https://reactjs.org/) - JS library
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Vite](https://vitejs.dev/) - Build tool
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+- [Radix UI](https://www.radix-ui.com/) - UI primitives
+- [Lucide React](https://lucide.dev/) - Icons
+- [Class Variance Authority](https://cva.style/) - Component variants
+- Mobile-first responsive design
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox and CSS Grid
+
+### What I learned
+
+This project helped me strengthen my understanding of several key concepts:
+
+**State Management with React Hooks**
+
+```tsx
+const [cart, setCart] = useState<CartItem[]>([]);
+const [orderConfirmed, setOrderConfirmed] = useState(false);
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**TypeScript Integration**
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+```tsx
+interface CartItem extends DessertItem {
+  quantity: number;
+}
 
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+interface CartProps {
+  cart: CartItem[];
+  onRemoveFromCart: (id: string) => void;
+  onConfirmOrder: () => void;
+  onStartNewOrder: () => void;
+}
 ```
+
+**Responsive Design with Tailwind CSS**
+
+```tsx
+<div className="grid gap-6 lg:grid-cols-3">
+  <div className="space-y-6 lg:col-span-2">{/* Desserts Grid */}</div>
+  <div className="lg:col-span-1">{/* Cart */}</div>
+</div>
+```
+
+**Component Composition and Reusability**
+Creating reusable UI components like `DessertCard`, `Cart`, and `OrderConfirmation` that can be easily maintained and extended.
+
+**Accessibility and UX**
+
+- Proper focus states and keyboard navigation
+- Responsive design that works on all screen sizes
+- Clear visual feedback for user interactions
+- Modal and sheet components for different screen sizes
+
+### Continued development
+
+Areas I'd like to continue focusing on in future projects:
+
+- **Performance Optimization**: Implementing React.memo, useMemo, and useCallback for better performance
+- **Testing**: Adding comprehensive unit and integration tests with Jest and React Testing Library
+- **State Management**: Exploring more advanced state management solutions like Zustand or Redux Toolkit
+- **Animation**: Adding smooth animations and transitions using Framer Motion
+- **Backend Integration**: Connecting to real APIs and handling data persistence
+
+### Useful resources
+
+- [React Documentation](https://react.dev/) - The official React docs helped me understand hooks and component patterns
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs) - Essential for building responsive layouts efficiently
+- [Radix UI Documentation](https://www.radix-ui.com/docs) - Great resource for accessible UI primitives
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/) - Helped me implement proper type safety
+- [Frontend Mentor Community](https://www.frontendmentor.io/community) - Great place to get feedback and learn from others
+
+## Author
+
+- Frontend Mentor - [@mavix21](https://www.frontendmentor.io/profile/mavix21)
+- GitHub - [@mavix21](https://github.com/mavix21)
+- LinkedIn - [Marcelo Vizcarra](https://www.linkedin.com/in/marcelo-vizcarra-7459841b1/)
+
+---
+
+This project was built as part of the Frontend Mentor challenges to improve my coding skills and build realistic projects.
