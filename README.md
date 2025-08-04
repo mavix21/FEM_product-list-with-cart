@@ -30,8 +30,10 @@ Users should be able to:
 
 ### Screenshot
 
-![Desktop Screenshot](./screenshots/screenshot-desktop.png)
-![Mobile Screenshot](./screenshots/screenshot-mobile.png)
+<div style="display: flex; flex-direction: column; gap: 1rem;">
+  <img src="./screenshots/screenshot-desktop.png" alt="Desktop Screenshot" width="100%" />
+  <img src="./screenshots/screenshot-mobile.png" alt="Mobile Screenshot" width="45%" />
+</div>
 
 ### Links
 
