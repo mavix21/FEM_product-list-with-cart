@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Screenshot
 
-<div style="display: flex; flex-direction: column; gap: 1rem;">
+<div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
   <img src="./screenshots/screenshot-desktop.png" alt="Desktop Screenshot" width="100%" />
   <img src="./screenshots/screenshot-mobile.png" alt="Mobile Screenshot" width="45%" />
 </div>
