@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Minus, Plus, ShoppingCart } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import type { DessertItem } from "@/types/dessert";
 
 interface DessertCardProps {
@@ -17,11 +17,11 @@ export function DessertCard({
   onUpdateQuantity,
 }: DessertCardProps) {
   return (
-    <Card className="border-0 shadow-none py-0">
+    <Card className="border-0 py-0 shadow-none">
       <CardContent className="!p-0">
         <div className="relative">
           <div
-            className={`relative ${quantity > 0 ? "outline-2 outline-primary rounded-lg" : ""}`}
+            className={`relative ${quantity > 0 ? "outline-primary rounded-lg outline-2" : ""}`}
           >
             <picture>
               <source
@@ -39,40 +39,45 @@ export function DessertCard({
               <img
                 src={dessert.image.mobile}
                 alt={dessert.name}
-                className="w-full aspect-video md:aspect-square object-cover rounded-lg"
+                className="aspect-video w-full rounded-lg object-cover md:aspect-square"
               />
             </picture>
           </div>
 
           {quantity > 0 ? (
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 z-10">
-              <div className="flex items-center bg-primary text-white rounded-full px-4 py-2 shadow-lg min-w-[120px] justify-between">
+            <div className="absolute -bottom-4 left-1/2 z-10 -translate-x-1/2 transform">
+              <div className="bg-primary flex min-w-[148px] items-center justify-between rounded-full px-4 py-2 text-white shadow-lg">
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="h-6 w-6 p-0 text-white hover:bg-primary/80 rounded-full border border-white"
+                  className="hover:text-primary h-6 w-6 rounded-full border border-white p-0 text-white hover:bg-white"
                   onClick={() => onUpdateQuantity(dessert.id, -1)}
                 >
-                  <Minus className="h-3 w-3" />
+                  <Minus className="size-3" />
                 </Button>
-                <span className="font-semibold text-sm px-3">{quantity}</span>
+                <span className="px-3 text-sm font-semibold">{quantity}</span>
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="h-6 w-6 p-0 text-white hover:bg-primary/80 rounded-full border border-white"
+                  className="hover:text-primary size-6 rounded-full border border-white p-0 text-white hover:bg-white"
                   onClick={() => onUpdateQuantity(dessert.id, 1)}
                 >
-                  <Plus className="h-3 w-3" />
+                  <Plus className="size-3" />
                 </Button>
               </div>
             </div>
           ) : (
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+            <div className="absolute -bottom-4 left-1/2 z-10 -translate-x-1/2 transform">
               <Button
                 onClick={() => onAddToCart(dessert)}
-                className="bg-background text-card-foreground border border-muted hover:bg-muted hover:text-primary rounded-full px-6 py-2"
+                className="bg-background text-foreground border-primary hover:bg-muted hover:text-primary rounded-full border px-8"
+                size="lg"
               >
-                <ShoppingCart className="h-4 w-4 mr-2" />
+                <img
+                  src="/images/icon-add-to-cart.svg"
+                  alt="Add to Cart"
+                  className="size-4"
+                />
                 Add to Cart
               </Button>
             </div>
@@ -80,10 +85,10 @@ export function DessertCard({
         </div>
 
         <div className="pt-8 pb-4">
-          <p className="text-sm text-muted-foreground mb-1">
+          <p className="text-muted-foreground mb-1 text-sm">
             {dessert.category}
           </p>
-          <h3 className="font-semibold text-card-foreground mb-1">
+          <h3 className="text-card-foreground mb-1 font-semibold">
             {dessert.name}
           </h3>
           <p className="text-primary font-semibold">
