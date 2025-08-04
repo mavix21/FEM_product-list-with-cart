@@ -6,6 +6,7 @@ import desserts from "@/data/desserts.json";
 
 export default function DessertOrdering() {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [, setOrderConfirmed] = useState(false);
 
   const addToCart = (dessert: DessertItem) => {
     setCart((prevCart) => {
@@ -45,21 +46,24 @@ export default function DessertOrdering() {
   };
 
   const handleConfirmOrder = () => {
-    // Handle order confirmation logic here
-    console.log("Order confirmed:", cart);
-    alert("Order confirmed! Thank you for your purchase.");
+    setOrderConfirmed(true);
+  };
+
+  const handleStartNewOrder = () => {
+    setCart([]);
+    setOrderConfirmed(false);
   };
 
   return (
-    <div className="min-h-screen bg-card p-4 lg:p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-3 gap-4">
+    <div className="bg-card min-h-screen p-4 lg:p-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-6 lg:grid-cols-3">
           {/* Desserts Grid */}
-          <div className="lg:col-span-2 space-y-6">
-            <h1 className="text-3xl lg:text-4xl font-bold text-card-foreground">
+          <div className="space-y-6 lg:col-span-2">
+            <h1 className="text-card-foreground text-3xl font-bold lg:text-4xl">
               Desserts
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
               {desserts.map((dessert) => (
                 <DessertCard
                   key={dessert.id}
@@ -78,6 +82,7 @@ export default function DessertOrdering() {
               cart={cart}
               onRemoveFromCart={removeFromCart}
               onConfirmOrder={handleConfirmOrder}
+              onStartNewOrder={handleStartNewOrder}
             />
           </div>
         </div>

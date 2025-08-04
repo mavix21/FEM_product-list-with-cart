@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { DessertItem } from "@/types/dessert";
 import emptyCart from "@/assets/images/illustration-empty-cart.svg";
+import OrderConfirmation from "./order-confirmation";
+import { useState } from "react";
 
 interface CartItem extends DessertItem {
   quantity: number;
@@ -11,13 +13,19 @@ interface CartProps {
   cart: CartItem[];
   onRemoveFromCart: (id: string) => void;
   onConfirmOrder: () => void;
+  onStartNewOrder: () => void;
 }
 
 export default function Cart({
   cart,
   onRemoveFromCart,
   onConfirmOrder,
+  onStartNewOrder,
 }: CartProps) {
+  const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
+  const [confirmedOrder, setConfirmedOrder] = useState<CartItem[]>([]);
+  const [confirmedTotal, setConfirmedTotal] = useState(0);
+
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
@@ -108,10 +116,23 @@ export default function Cart({
 
               <Button
                 className="bg-primary hover:bg-primary/90 w-full rounded-full py-3 text-white"
-                onClick={onConfirmOrder}
+                onClick={() => {
+                  setConfirmedOrder([...cart]);
+                  setConfirmedTotal(getTotalPrice());
+                  setShowOrderConfirmation(true);
+                  onConfirmOrder();
+                }}
               >
                 Confirm Order
               </Button>
+
+              <OrderConfirmation
+                isOpen={showOrderConfirmation}
+                onClose={() => setShowOrderConfirmation(false)}
+                orderItems={confirmedOrder}
+                orderTotal={confirmedTotal}
+                onStartNewOrder={onStartNewOrder}
+              />
             </>
           )}
         </CardContent>
